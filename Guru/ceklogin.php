@@ -6,13 +6,13 @@ $username=str_replace("'","",$_POST['username']);
 $password=($_POST['password']);
 
  $sql="SELECT * FROM guru WHERE username='$username' and password='$password'";
-$result=mysql_query($sql);
-$count=mysql_num_rows($result);
+$result=mysqli_query($connect, $sql);
+$count=mysqli_num_rows($result);
 
-$guru = mysql_num_rows(mysql_query("SELECT * FROM guru WHERE username='$username' and password='$password'"));
+$guru = mysqli_num_rows(mysqli_query("SELECT * FROM guru WHERE username='$username' and password='$password'"));
 
 if($count==1){
-$query = mysql_query("UPDATE guru SET current_login = now() WHERE username = '$username'");
+$query = mysqli_query("UPDATE guru SET current_login = now() WHERE username = '$username'");
 session_start();
 		$_SESSION['guru']=$username;
 		$_SESSION['username']="guru";
