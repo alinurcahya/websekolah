@@ -1,6 +1,10 @@
 <?php
-$page = $_GET[page];
 
+if(isset($_GET['page'])) {
+$page = $_GET['page'];
+} else {
+  $page = null;
+}
 $file = "../administrasi/$page.php";
 
 if(!file_exists($file) || empty($page)){ 

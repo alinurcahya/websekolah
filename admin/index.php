@@ -2,7 +2,7 @@
 include "./Config/koneksi.php";
 
 if($_SESSION['username']=="admin"){
-$query = mysql_query("SELECT username, last_login FROM admin WHERE username='$_SESSION[admin]'");
+$query = mysqli_query("SELECT username, last_login FROM admin WHERE username='$_SESSION[admin]'");
 
 }
 ?>
@@ -262,7 +262,7 @@ $(document).pngFix( );
 		
 				<div class="nav-divider">&nbsp;</div>
 		 <?php
-		 if($_SESSION['username']=="admin" || $_SESSION['username']=="admin"){
+		 if(isset($_SESSION['username']) && $_SESSION['username']=="admin"){
 		 ?>    
 
  <ul class="select"><li><a href="#"><b>Visi Misi</b><!--[if IE 7]><!--></a><!--<![endif]-->
@@ -397,7 +397,7 @@ $(document).pngFix( );
 
 	<!--  start page-heading -->
 	<div id="page-heading">
-		<h1 align="center">Selamat Datang <?php if($_SESSION['username']!="admin"){ ?>Di Website Kami <?php }else{echo "Kepala Sekolah, Bidang Kurikulum";} ?><?php echo $admin['username']; ?> 
+		<h1 align="center">Selamat Datang <?php if(empty($_SESSION['username']) || $_SESSION['username']!="admin"){ ?>Di Website Kami <?php }else{echo "Kepala Sekolah, Bidang Kurikulum";} ?><?php //echo $admin['username']; ?> 
 	</div>
 	<!-- end page-heading -->
 
