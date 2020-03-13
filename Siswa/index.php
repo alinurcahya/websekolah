@@ -2,7 +2,7 @@
 include "./Config/koneksi.php";
 
 if($_SESSION['username']=="siswa"){
-$query = mysql_query("SELECT username, last_login FROM siswa WHERE username='$_SESSION[siswa]'");
+$query = mysqli_query("SELECT username, last_login FROM siswa WHERE username='$_SESSION[siswa]'");
 
 }
 ?>
@@ -260,7 +260,7 @@ $(document).pngFix( );
 		
 				<div class="nav-divider">&nbsp;</div>
 		 <?php
-		 if($_SESSION['username']=="siswa" || $_SESSION['username']=="siswa"){
+		 if (isset($_SESSION['username']) && $_SESSION['username']=="siswa"){
 		 ?>    
 
  <ul class="select"><li><a href="#"><b>Visi Misi</b><!--[if IE 7]><!--></a><!--<![endif]-->
@@ -368,7 +368,7 @@ $(document).pngFix( );
 
 	<!--  start page-heading -->
 	<div id="page-heading">
-		<h1 align="center">Selamat Datang <?php if($_SESSION['username']!="siswa"){ ?>Siswa / Siswi <?php }else{echo "Selamat Menjalankan Tugas ^_^";} ?><?php echo $guru['username']; ?>
+		<h1 align="center">Selamat Datang <?php if(empty($_SESSION['username']) || $_SESSION['username']!="siswa"){ ?>Siswa / Siswi <?php }else{echo "Selamat Menjalankan Tugas ^_^";} ?><?php //echo $guru['username']; ?>
 	</div>
 	<!-- end page-heading -->
 

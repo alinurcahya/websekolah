@@ -2,7 +2,7 @@
 include "./Config/koneksi.php";
 
 if($_SESSION['username']=="guru"){
-$query = mysql_query("SELECT username, last_login FROM guru WHERE username='$_SESSION[guru]'");
+$query = mysqli_query("SELECT username, last_login FROM guru WHERE username='$_SESSION[guru]'");
 
 }
 ?>
@@ -262,7 +262,7 @@ $(document).pngFix( );
 		
 				<div class="nav-divider">&nbsp;</div>
 		 <?php
-		 if($_SESSION['username']=="guru" || $_SESSION['username']=="guru"){
+		 if (isset($_SESSION['username']) && $_SESSION['username']=="guru"){
 		 ?>    
 		 
 		 <ul class="select"><li><a href="#"><b>Profil</b><!--[if IE 7]><!--></a><!--<![endif]-->
@@ -376,7 +376,7 @@ $(document).pngFix( );
 
 	<!--  start page-heading -->
 	<div id="page-heading">
-		<h1 align="center">Selamat Datang <?php if($_SESSION['username']!="guru"){ ?>Para Bapak / Ibu Guru <?php }else{echo "Bapak Kepala guru";} ?><?php echo $guru['username']; ?> 
+		<h1 align="center">Selamat Datang <?php if(empty($_SESSION['username']) || $_SESSION['username']!="guru"){ ?>Para Bapak / Ibu Guru <?php }else{echo "Bapak Kepala guru";} ?><?php //echo $guru['username']; ?> 
 		
 
 	</div>
